@@ -1,3 +1,6 @@
 order-management/target/
 order-management/bin/
-order-management/data/auto.cnf
+order-management/data/
+order-management/.project
+order-management/.settings/
+order-management/.classpath
