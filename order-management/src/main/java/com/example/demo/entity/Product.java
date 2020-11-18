@@ -22,6 +22,5 @@ public class Product {
 	private float price;
 	private String productType;
 	private String detail;
-	private Map<String, String> features;
 
 }
