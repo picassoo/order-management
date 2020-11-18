@@ -7,17 +7,31 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: containerpass
       MYSQL_DATABASE: db
-    ports:
-      - "3308:3306"
     volumes:
       - "./configs/mysql.conf:/etc/mysql/conf.d/config-file.cnf"
       - "./data:/var/lib/mysql:rw"
+      - "./database/create-order-management.sql:/docker-entrypoint-initdb.d/init.sql"
+    networks:
+      - order-network
+      
   admin:    
     image: adminer    
     ports:      
-      - "8090:8080"
+      - "8080:8080"
+    networks:
+      - order-network
       
   order-management:
+    #restart: on-failure
+    depends_on: 
+      - mysql-development
     image: order-management-app
     ports:
-      - "8091:8080"
+      - "8090:8090"
+    networks:
+      - order-network    
+
+
+networks:
+  order-network:
+    driver: bridge
