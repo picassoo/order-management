@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Customer")
+@Table(name = "order_customer")
 public class Customer {
 
 	@Id
@@ -51,4 +51,8 @@ public class Customer {
 	@JsonManagedReference
 	private List<Address> addresses = new ArrayList<>();
 
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, orphanRemoval = true, mappedBy = "customer")
+	@JsonManagedReference
+	private List<Order> orders = new ArrayList<>();
+	
 }

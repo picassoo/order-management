@@ -5,3 +5,5 @@ order-management/.project
 order-management/.settings/
 order-management/.classpath
 data/
+order-management/.factorypath
+order-management/app.log*
