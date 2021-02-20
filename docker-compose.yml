@@ -13,13 +13,16 @@ services:
       - "./database/create-order-management.sql:/docker-entrypoint-initdb.d/init.sql"
     networks:
       - order-network
-      
+    ports:
+      - "3306:3306"
   admin:    
     image: adminer    
     ports:      
       - "8080:8080"
     networks:
       - order-network
+    depends_on: 
+      - mysql-development
       
   order-management:
     #restart: on-failure
